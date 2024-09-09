@@ -16,8 +16,7 @@ exports.getAllTours = (req, res) => {
 };
 
 exports.getTour = (req, res) => {
-  console.log(req.params);
-  const id = +req.params.id;
+  const id = +req.params.tourId;
   if (id > tours.length) {
     return res.status(404).json({
       status: 'Not found!',

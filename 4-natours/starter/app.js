@@ -6,18 +6,18 @@ const app = express();
 
 // MIDDLEWARE
 app.use(express.json());
-
 app.use(morgan('dev'));
-// setting up middleware
-app.use((req, res, next) => {
-  console.log('middleware running');
-  next();
-});
+
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
 
+// Param middleware for 'id'
+app.param('tourId', (req, res, next, id) => {
+  console.log(`Request received with global id: ${id}`);
+  next();
+});
 // ROUTE
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
