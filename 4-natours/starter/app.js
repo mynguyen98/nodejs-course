@@ -5,9 +5,12 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 
 // MIDDLEWARE
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 app.use(express.json());
-app.use(morgan('dev'));
-
+app.use(express.static(`${__dirname}/assets`));
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();

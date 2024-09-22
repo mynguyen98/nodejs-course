@@ -12,7 +12,7 @@ router.param('tourId', (req, res, next, id) => {
   console.log(`Request received with 111 id: ${id}`);
   next();
 });
-// router.route('/').get(getAllTours).post(createTour);
+router.route('/').get(getAllTours).post(createTour);
 
 router
   .route('/:tourId')
